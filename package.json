@@ -1,0 +1,25 @@
+{
+  "name": "easychatroom",
+  "version": "1.0.0",
+  "description": "An easy chatroom demo",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/beconomist/easychatroom.git"
+  },
+  "keywords": [
+    "chatroom"
+  ],
+  "author": "Bao",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/beconomist/easychatroom/issues"
+  },
+  "homepage": "https://github.com/beconomist/easychatroom#readme",
+  "dependencies": {
+    "express": "^4.14.0"
+  }
+}
