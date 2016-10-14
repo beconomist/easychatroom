@@ -1,3 +1,5 @@
+
+
 function divEscapedContentElement(message) {
   return $('<div></div>').text(message);
 }
@@ -20,7 +22,7 @@ function processUserInput(chatApp, socket) {
     $('#messages').append(divEscapedContentElement(message));
     $('#messages').scrollTop($('#messages').prop('scrollHeight'));
   }
-  $('#send-message').val();
+  $('#send-message').val('');
 }
 
 // 以下的Code是client-side initiaion of Socket.IO
@@ -28,13 +30,12 @@ var socket = io.connect();
 
 $(document).ready(function() {
   var chatApp = new Chat(socket);
-
   // 當名字變更時
   socket.on('nameResult', function(result) {
     var message;
 
     if (result.success) {
-      message = '你現在是 ' + result.name + ' 了。';
+      message = 'You are now ' + result.name + '.';
     } else {
       message = result.message;
     }
@@ -45,7 +46,7 @@ $(document).ready(function() {
   // 當換聊天房間時
   socket.on('joinResult', function(result) {
     $('#room').text(result.room);
-    $('#messages').append(divSystemContentElement('換房間囉'));
+    $('#messages').append(divSystemContentElement('Room changed.'));
   });
 
   // 當收到訊息時
@@ -55,7 +56,7 @@ $(document).ready(function() {
   })
 
   socket.on('rooms', function(rooms) {
-    $('#room-list').empty;
+    $('#room-list').empty();
 
     for (var room in rooms) {
       room = room.substring(1, room.length);
@@ -65,7 +66,7 @@ $(document).ready(function() {
     }
     // 當使用者從房間清單上點選房間時，可直接跳過去該房間
     $('#room-list div').click(function() {
-      chatApp.processCommand('/join' + $(this).text());
+      chatApp.processCommand('/join ' + $(this).text());
       $('#send-message').focus();
     });
   });

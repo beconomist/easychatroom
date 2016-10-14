@@ -9,7 +9,6 @@
 //   console.log("Easychatroom app listening on port " + process.env.PORT);
 // });
 
-
 var http = require('http');
 var fs = require('fs');
 var path = require('path');
@@ -50,6 +49,7 @@ function serveStatic(response, cache, absPath) {
   }
 }
 
+// Create http server (回覆靜態網頁)
 var server = http.createServer(function(request, response) {
   var filePath = false;
 
@@ -63,9 +63,12 @@ var server = http.createServer(function(request, response) {
   serveStatic(response, cache, absPath);
 })
 
+// Start http server
 server.listen(process.env.PORT || 3000, function() {
   console.log("Server listening on port: " + process.env.PORT);
 });
 
+// Link to chat server
 var chatServer = require('./lib/chat_server');
+// Start chat server
 chatServer.listen(server);
