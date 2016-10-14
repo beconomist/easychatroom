@@ -1,7 +1,7 @@
 
 
 function divEscapedContentElement(message) {
-  return $('<div></div>').text(message);
+  return $('<div class="chat"></div>').text(message);
 }
 
 function divSystemContentElement(message) {
